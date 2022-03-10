@@ -23,6 +23,14 @@ $age = $_GET['age'];
  </head>
  <body>
 
+    <form method="GET">
+        <input type="text" name="name" placeholder="Inserisci nome">
+        <input type="text" name="email" placeholder="Inserisci email">
+        <input type="number" name="age" placeholder="Inserisci età">
+        <button type="submit">Invia</button>
+        
+    </form>
+
     <p>
         Name:
         <?php
@@ -30,7 +38,7 @@ $age = $_GET['age'];
             if(strlen($name) > 3) {
                 echo $name;
             } else {
-                echo 'NOME NON VALIDO! inserire un nome con almeno 3 caratteri.';
+                echo '<span style="color:red;">NOME NON VALIDO! inserire un nome con almeno 3 caratteri.</span>';
             }
         ?>
     </p>
@@ -40,12 +48,12 @@ $age = $_GET['age'];
         <?php
             // verifica se email contiene una @ e un punto(.)
             if(empty($email)) {
-                echo 'email vuota.';
+                echo '<span style="color:red;">email vuota.</span>';
             } else {
                 if (strpos($email, '@') !== false && strpos($email, '.') != false) {
                     echo $email;
                 } else {
-                    echo "INDIRIZZO E-MAIL NON VALIDO! deve contenere una '@' e un '.'.";
+                    echo "<span style='color:red;'> INDIRIZZO E-MAIL NON VALIDO! deve contenere una ' @ ' e un ' . '</span>";
                 }
             }
         ?>
@@ -55,10 +63,10 @@ $age = $_GET['age'];
         Age:
         <?php
             // verificare se age sia un numero
-            if(is_numeric($age)) {
+            if(is_numeric($age) && ($age > 0)) {
                 echo $age;
             } else {
-                echo 'Numero inserito non valido! inserisci un numero.';
+                echo '<span style="color:red">Numero inserito non valido! inserisci un numero.</span>';
             }
         ?>
     </p>
@@ -66,13 +74,14 @@ $age = $_GET['age'];
     <!-- controllo di tutti i parametri per consentire l'accesso. -->
     <p>
         <?php
-            if((strlen($name) > 3) && (strpos($email, '@') !== false && strpos($email, '.')) !== false && is_numeric($age)) {
-                echo 'ACCESSO CONSENTITO';  
+            if((strlen($name) > 3) && (strpos($email, '@') !== false && strpos($email, '.')) !== false && is_numeric($age) && ($age > 0)) {
+                echo '<span style="color:green;">ACCESSO CONSENTITO </span>';  
             } else {
-                echo 'ACCESSO NEGATO';  
+                echo '<span style="color:red;">ACCESSO NEGATO </span>';  
             }
         ?>
     </p>
+
      
  </body>
  </html>
