@@ -23,7 +23,12 @@
 <?php
     $array_stringa = explode('.', $text);
 
-    var_dump($array_stringa);
+    for($i=0; $i < count($array_stringa); $i++) {
+        if($array_stringa[$i] != ''){
+            echo "<p> **** $array_stringa[$i] </p>";
+        }
+    }
+
 ?>
     
 </body>
